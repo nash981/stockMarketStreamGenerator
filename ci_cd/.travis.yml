@@ -1,0 +1,29 @@
+language: java
+jdk:
+  - openjdk11
+
+services:
+  - docker
+
+before_install:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+script:
+  - mvn clean package -f kafka-producer/pom.xml
+  - mvn clean package -f kafka-consumer/pom.xml
+  - docker build -t your-docker-registry/kafka:latest -f docker/Dockerfile.kafka .
+  - docker build -t your-docker-registry/stock-data-producer:latest -f docker/Dockerfile.producer .
+  - docker build -t your-docker-registry/stock-data-consumer:latest -f docker/Dockerfile.consumer .
+  - docker build -t your-docker-registry/cassandra:latest -f docker/Dockerfile.cassandra .
+
+after_success:
+  - docker push your-docker-registry/kafka:latest
+  - docker push your-docker-registry/stock-data-producer:latest
+  - docker push your-docker-registry/stock-data-consumer:latest
+  - docker push your-docker-registry/cassandra:latest
+
+deploy:
+  provider: script
+  script: bash ci_cd/deploy_to_kubernetes.sh
+  on:
+    branch: main

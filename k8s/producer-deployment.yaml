@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stock-data-producer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stock-data-producer
+  template:
+    metadata:
+      labels:
+        app: stock-data-producer
+    spec:
+      containers:
+        - name: stock-data-producer
+          image: your-docker-registry/stock-data-producer:latest

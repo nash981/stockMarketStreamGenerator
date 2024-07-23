@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stock-data-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stock-data-consumer
+  template:
+    metadata:
+      labels:
+        app: stock-data-consumer
+    spec:
+      containers:
+        - name: stock-data-consumer
+          image: your-docker-registry/stock-data-consumer:latest
