@@ -23,7 +23,20 @@ public class StockDataProducer {
             ProducerRecord<String, String> record = new ProducerRecord<>("stock-market-data", key, value);
             producer.send(record);
         }
+        int i = 0;
+        while(true){
+            String key = "stock-" + i;
+            String value = "Stock data " + i;
+            ProducerRecord<String, String> record = new ProducerRecord<>("stock-market-data", key, value);
+            producer.send(record);
+            i++;
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
-        producer.close();
+//        producer.close();
     }
 }

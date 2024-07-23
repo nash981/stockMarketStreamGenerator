@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cassandra
+  namespace: default
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: cassandra
@@ -14,6 +15,6 @@ spec:
     spec:
       containers:
         - name: cassandra
-          image: your-docker-registry/cassandra:latest
+          image: nash981/cassandra:latest
           ports:
             - containerPort: 9042

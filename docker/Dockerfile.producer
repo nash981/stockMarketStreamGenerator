@@ -1,4 +1,4 @@
 FROM openjdk:11-jre-slim
-COPY target/stock-data-producer.jar /app/stock-data-producer.jar
+COPY /kafka-producer/target/stock-data-producer-1.0-SNAPSHOT.jar /app/stock-data-producer-1.0-SNAPSHOT.jar
 WORKDIR /app
 CMD ["java", "-jar", "stock-data-producer.jar"]

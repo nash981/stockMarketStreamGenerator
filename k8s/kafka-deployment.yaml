@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kafka
+  namespace: default
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: kafka
@@ -14,6 +15,6 @@ spec:
     spec:
       containers:
         - name: kafka
-          image: your-docker-registry/kafka:latest
+          image: nash981/kafka:latest
           ports:
             - containerPort: 9092

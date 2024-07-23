@@ -1,4 +1,4 @@
 FROM openjdk:11-jre-slim
-COPY target/stock-data-consumer.jar /app/stock-data-consumer.jar
+COPY /kafka-consumer/target/stock-data-consumer-1.0-SNAPSHOT.jar /app/stock-data-consumer-1.0-SNAPSHOT.jar
 WORKDIR /app
 CMD ["java", "-jar", "stock-data-consumer.jar"]

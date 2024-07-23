@@ -11,16 +11,16 @@ before_install:
 script:
   - mvn clean package -f kafka-producer/pom.xml
   - mvn clean package -f kafka-consumer/pom.xml
-  - docker build -t your-docker-registry/kafka:latest -f docker/Dockerfile.kafka .
-  - docker build -t your-docker-registry/stock-data-producer:latest -f docker/Dockerfile.producer .
-  - docker build -t your-docker-registry/stock-data-consumer:latest -f docker/Dockerfile.consumer .
-  - docker build -t your-docker-registry/cassandra:latest -f docker/Dockerfile.cassandra .
+  - docker build -t nash981/kafka:latest -f docker/Dockerfile.kafka .
+  - docker build -t nash981/stock-data-producer:latest -f docker/Dockerfile.producer .
+  - docker build -t nash981/stock-data-consumer:latest -f docker/Dockerfile.consumer .
+  - docker build -t nash981/cassandra:latest -f docker/Dockerfile.cassandra .
 
 after_success:
-  - docker push your-docker-registry/kafka:latest
-  - docker push your-docker-registry/stock-data-producer:latest
-  - docker push your-docker-registry/stock-data-consumer:latest
-  - docker push your-docker-registry/cassandra:latest
+  - docker push nash981/kafka:latest
+  - docker push nash981/stock-data-producer:latest
+  - docker push nash981/stock-data-consumer:latest
+  - docker push nash981/cassandra:latest
 
 deploy:
   provider: script

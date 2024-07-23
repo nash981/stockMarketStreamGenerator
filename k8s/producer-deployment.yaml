@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: stock-data-producer
+  namespace: kafka
 spec:
   replicas: 1
   selector:
@@ -14,4 +15,4 @@ spec:
     spec:
       containers:
         - name: stock-data-producer
-          image: your-docker-registry/stock-data-producer:latest
+          image: nash981/stock-data-producer:latest
